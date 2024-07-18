@@ -1,0 +1,17 @@
+# Visualize Before Classification
+
+# Histograms for Distribution of Features
+df.hist(figsize=(8, 8))
+plt.suptitle("Feature Distributions", fontsize=10)
+plt.show()
+
+# Scatter Plots for Relationships
+sns.pairplot(df, hue='City')    # City is our target variable
+plt.suptitle("Pair Plot of Features", fontsize=4)
+plt.show()
+
+# Correlation Matrix
+plt.figure(figsize=(8,8))
+sns.heatmap(df[num_cols].corr(), annot=True, cmap='coolwarm', fmt=".2f")
+plt.title("Correlation Matrix")
+plt.show()
