@@ -15,3 +15,33 @@ plt.figure(figsize=(8,8))
 sns.heatmap(df[num_cols].corr(), annot=True, cmap='coolwarm', fmt=".2f")
 plt.title("Correlation Matrix")
 plt.show()
+
+_____________________________________________________________________________________________________
+
+# Visualize After Classification
+
+from sklearn.metrics import confusion_matrix, classification_report
+
+# Confusion Matrix
+conf_matrix = confusion_matrix(y_test, y_pred)
+plt.figure(figsize=(8, 8))
+sns.heatmap(conf_matrix, annot=True, cmap='Blues', fmt='g')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.title('Confusion Matrix')
+plt.show()
+
+# Feature Importance
+feature_names = X_train.columns.tolist()
+importances = best_model.feature_importances_
+
+feature_importance_df = pd.DataFrame({'Feature': feature_names, 'Importance': importances})
+feature_importance_df = feature_importance_df.sort_values(by='Importance', ascending=False)
+
+# Plot feature importances
+plt.figure(figsize=(8, 8))
+sns.barplot(x='Importance', y='Feature', data=feature_importance_df)
+plt.title('Feature Importance')
+plt.show()
+
+
